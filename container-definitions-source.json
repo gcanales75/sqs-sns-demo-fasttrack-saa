@@ -1,0 +1,8 @@
+[
+    {
+        "name": "fasttrack-saa",
+        "image": "$awsAccount.dkr.ecr.us-east-1.amazonaws.com/fasttracksaa:latest", 
+        "cpu": 0, 
+        "essential": true
+    }
+]

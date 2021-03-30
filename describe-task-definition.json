@@ -1,0 +1,69 @@
+38f9d362b9bf:DEMO-SQS-SAA glcnl$ aws ecs describe-task-definition --task-definition demoSqs-td
+{
+    "taskDefinition": {
+        "status": "ACTIVE", 
+        "memory": "512", 
+        "networkMode": "awsvpc", 
+        "family": "demoSqs-td", 
+        "placementConstraints": [], 
+        "requiresAttributes": [
+            {
+                "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+            }, 
+            {
+                "name": "ecs.capability.execution-role-awslogs"
+            }, 
+            {
+                "name": "com.amazonaws.ecs.capability.ecr-auth"
+            }, 
+            {
+                "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+            }, 
+            {
+                "name": "com.amazonaws.ecs.capability.task-iam-role"
+            }, 
+            {
+                "name": "ecs.capability.execution-role-ecr-pull"
+            }, 
+            {
+                "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+            }, 
+            {
+                "name": "ecs.capability.task-eni"
+            }
+        ], 
+        "cpu": "256", 
+        "executionRoleArn": "arn:aws:iam::521878158907:role/ecsTaskExecutionRole", 
+        "compatibilities": [
+            "EC2", 
+            "FARGATE"
+        ], 
+        "volumes": [], 
+        "requiresCompatibilities": [
+            "FARGATE"
+        ], 
+        "taskRoleArn": "arn:aws:iam::521878158907:role/demoSqs-role", 
+        "taskDefinitionArn": "arn:aws:ecs:us-east-1:521878158907:task-definition/demoSqs-td:1", 
+        "containerDefinitions": [
+            {
+                "environment": [], 
+                "name": "sqsDemo", 
+                "mountPoints": [], 
+                "image": "521878158907.dkr.ecr.us-east-1.amazonaws.com/demosqs:latest", 
+                "cpu": 0, 
+                "portMappings": [], 
+                "logConfiguration": {
+                    "logDriver": "awslogs", 
+                    "options": {
+                        "awslogs-region": "us-east-1", 
+                        "awslogs-stream-prefix": "ecs", 
+                        "awslogs-group": "/ecs/demoSqs-td"
+                    }
+                }, 
+                "essential": true, 
+                "volumesFrom": []
+            }
+        ], 
+        "revision": 1
+    }
+}
