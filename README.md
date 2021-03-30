@@ -6,7 +6,7 @@ In this demo we will create an environment that will produce messages, store the
 
 This is the architecture diagram:
 
-<img src="images/FastTrackSaa-SQS-SNS-Page-1.png" alt="drawing" width="500"/>
+<img src="images/FastTrackSaa-SQS-SNS-Page-1.png" alt="drawing" width="800"/>
 
 ### Pre-requisites
 
