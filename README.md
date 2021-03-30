@@ -41,10 +41,10 @@ This is the architecture diagram:
 
 1. Update Python script with env vars
 
-````sh
+    ````sh
     export awsAccount=`aws sts get-caller-identity --query "Account" --output text`
     envsubst < "pullFromSqsQueue-source.py" > "pullFromSqsQueue.py"
-````
+    ````
 
 
 1. Build the Docker image
