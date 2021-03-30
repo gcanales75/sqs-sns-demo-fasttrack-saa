@@ -154,7 +154,7 @@ This is the architecture diagram:
 
 ## Demo time
 
-1. Create an standard SQS queue, **Name: demo-decoupling-saa**, default access policy parameters -> Create queue
+1. Create an standard SQS queue, **Name: demo-decoupling-saa**, default access policy parameters -> Create queue [Explain the different configuration options]
 
 1. Create an SNS Topic, **Name: fasttrack-saa**, Stardard topic, leave defaults -> Create topic (you can review the FIFO aand stanadard differences in topics, different types of subscribers, use cases, etc...)
 
