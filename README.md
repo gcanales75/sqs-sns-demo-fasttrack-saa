@@ -168,6 +168,6 @@ This is the architecture diagram:
 
 1. Create Alarm
 
-1. Run a script called `insertToSqs.py` that will insert messages in your SQS queue
+1. Run a script called `insertToSqs.py` that will insert messages in your SQS queue. [Here's an opportunity to mention the different scenarios and use cases fo SQS and message queues]
 
     After a minute, this will trigger the CW Alarm -> SNS Topic -> Lambda function -> ECS task workflow, which will eventually put items in your DynamoDB table. You can demo the alarm being triggered, then the ECS tasks being launched and finally the DynamoDB table being updated (you can use "Get live item count" DynamoDB feature). Once the SQS queue is empty, the containers will stop running.
