@@ -15,7 +15,7 @@ This is the architecture diagram:
 
 > NOTE: We will use *us-east-1* as default region
 
-### In the following steps, you will create the requiered components to make the SQS and SNS demo. The components are:
+### In the following steps, you will create the requiered components to make the SQS and SNS demo (this tasks will have to be executedd prior the demo). The components are:
 
 * DynamoDB table
 * ECR repo
@@ -152,7 +152,7 @@ This is the architecture diagram:
     aws lambda add-permission --function-name fasttrack-saa --statement-id sns --action lambda:InvokeFunction --source-arn arn:aws:sns:us-east-1:$awsAccount:fasttrack-saa --principal sns.amazonaws.com --source-account $awsAccount
     ```
 
-## Demo steps
+## Demo time
 
 1. Create an standard SQS queue, **Name: demo-decoupling-saa**, default access policy parameters -> Create queue
 
