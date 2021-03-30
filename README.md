@@ -152,29 +152,13 @@ This is the architecture diagram:
     aws lambda add-permission --function-name fasttrack-saa --statement-id sns --action lambda:InvokeFunction --source-arn arn:aws:sns:us-east-1:$awsAccount:fasttrack-saa --principal sns.amazonaws.com --source-account $awsAccount
     ```
 
-## The demo
-
-The demo it's about:
-
-1. Create an standard SQS queue
-
-1. Create an SNS topic and subscription (Lambda)
-
-1. Create an alarm to monitor SQS messages in queue and the SNS topic as notification
-
-1. Run a script that inserts messages in an SQS (demo the console, talk more deeply about the differenced between standard and FIFO queues)
-
-1. Once the alarm triggers, the SNS topic will invoke the Lambda function which will spin up 4 ECS tasks. The container will run a python script `pullFromSqsQueue.py` which pull a message from the queue and put a message in a DynamoDB table, add the container *hostname* as enriched data.
-
-1. Once the SQS queue is empty, the containers will stop running
-
 ## Demo steps
 
 1. Create an standard SQS queue, **Name: demo-decoupling-saa**, default access policy parameters -> Create queue
 
 1. Create an SNS Topic, **Name: fasttrack-saa**, Stardard topic, leave defaults -> Create topic (you can review the FIFO aand stanadard differences in topics, different types of subscribers, use cases, etc...)
 
-1. Click on **Create subscription**, Protocol: AWS Lambda, Endpoint: [select le lambda function called "fasttrack-saa"] -> Create subscription (here's an opprtunity to explain further)
+1. Click on **Create subscription**, Protocol: AWS Lambda, Endpoint: [select le lambda function called "fasttrack-saa", you can demo the Lambda function code to show what it does -> pull a message from the queue and put a message in a DynamoDB table, add the container *hostname* as enriched data] -> Create subscription (here's an opprtunity to explain further)
 
 1. Create an alarm to monitor SQS messages in queue and the SNS topic as notification. Go to CloudWatch -> Metrics -> SQS -> Queue metrics. For the queue name: demo-decoupling-saa, select `ApproximateNumberOfMessagesVisible`, click on the tab **Graphed metrics (1)**, change the Statistic to **Sum** and Period to **1 minute**. On Actions click on the little bell to create an alarm. On the alarm setting page, in the **Conditions** section leave default in **Threshold type** and **Whenever ApproximateNumberOfMessagesVisible is...** and for threshold value type **100**. Which mean whenever SQS exceeds 100 messages, the alarm will be triggered. Click **Next**
 
@@ -186,4 +170,4 @@ The demo it's about:
 
 1. Run a script called `insertToSqs.py` that will insert messages in your SQS queue
 
-    After a minute, this will trigger the CW Alarm -> SNS Topic -> Lambda function -> ECS task workflow, which will eventually put items in your DynamoDB table. You can demo the alarm being triggered, then the ECS tasks being launched and fiinally the DynamoDB table being updated (you can use "Get live item count" DynamoDB feature)
+    After a minute, this will trigger the CW Alarm -> SNS Topic -> Lambda function -> ECS task workflow, which will eventually put items in your DynamoDB table. You can demo the alarm being triggered, then the ECS tasks being launched and finally the DynamoDB table being updated (you can use "Get live item count" DynamoDB feature). Once the SQS queue is empty, the containers will stop running.
